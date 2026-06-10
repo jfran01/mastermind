@@ -2,13 +2,17 @@ class User
 
   attr_reader :code
 
-  def initialize (role)
-    @role = role
-    self.get_input()
+  def get_role
+    puts "What side of the law are you going to be on today? Help the jeweller to set an unbreakable code and protect her wares (enter 'setter'), \nOr launch a heist and attempt to break into the safe (enter 'breaker')"
+    @role = gets.chomp.downcase
   end
 
   def get_input
-    puts "Enter your secret code:"
+    if @role == "setter"
+      puts "Enter your secret code:"
+    elsif @role == "breaker"
+      puts "Enter your guess:"
+    end
     @code = gets.chomp
     until @code.chars.all? {|num| num.between?("1", "6")}
       puts "Hmm only NUMBERS between 1 TO 6 please. Try again:" 
@@ -22,7 +26,7 @@ class User
     until @code.length == 4
         if @code.length < 4
           too_short = 4 - @code.length
-          puts "Oops, your code is #{too_short} digits too short- WAY too easy to crack. I'm going to need #{too_short} more digits please..."
+          puts "Oops, your code is #{too_short} digits too short. I'm going to need #{too_short} more digits please..."
           @code += gets.chomp
         elsif code.length > 4
           too_long = @code.length - 4
@@ -34,5 +38,5 @@ class User
 
 end
 
-oops = User.new(role)
-p oops.code
+oops = User.new()
+p oops.get_role
