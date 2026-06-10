@@ -2,8 +2,12 @@ class User
 
   attr_reader :code
 
+  def initialize 
+    self.get_role()
+  end
+
   def get_role
-    puts "What side of the law are you going to be on today? Help the jeweller to set an unbreakable code and protect her wares (enter 'setter'), \nOr launch a heist and attempt to break into the safe (enter 'breaker')"
+    puts "What side of the law are you going to be on today? \nHelp the jeweller to set an unbreakable code and protect her wares (enter 'setter'), \nOr launch a heist and attempt to break into the safe (enter 'breaker')"
     @role = gets.chomp.downcase
   end
 
