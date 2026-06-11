@@ -1,10 +1,6 @@
 class User
 
-  attr_reader :code
-
-  def initialize 
-    self.get_role()
-  end
+  attr_reader :code, :role
 
   def get_role
     puts "What side of the law are you going to be on today? \nHelp the jeweller to set an unbreakable code and protect her wares (enter 'setter'), \nOr launch a heist and attempt to break into the safe (enter 'breaker')"
@@ -33,14 +29,9 @@ class User
           puts "Oops, your code is #{too_short} digits too short. I'm going to need #{too_short} more digits please..."
           @code += gets.chomp
         elsif code.length > 4
-          too_long = @code.length - 4
-          puts "Oops, your code is #{too_long} digits too long - not enough room for that. I'm going to have to get rid of #{@code[too_long+1..-1]}"
-          @code = @code[0..too_long]
+          puts "Oops, your code is #{@code.length - 4} digits too long - not enough room for that. I'm going to have to get rid of #{@code[4..-1]}"
+          @code = @code[0..3]
         end
     end
   end
-
 end
-
-oops = User.new()
-p oops.get_role
